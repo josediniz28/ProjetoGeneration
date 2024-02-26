@@ -10,7 +10,6 @@ import re
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://projeto_final_qnuq_user:RILa2bNqeRRoxtsLoZapj7bWo6IRlZNw@dpg-cne8ji5jm4es739o2uu0-a.oregon-postgres.render.com/projeto_final_qnuq'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Sport100@localhost/Projeto_Final'
 db = SQLAlchemy(app)
 api = Api(app)
 
@@ -268,7 +267,8 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 app.register_blueprint(swaggerui_blueprint, url_prefix='/api-docs')
 
 # Criação das tabelas do banco de dados
+with app.app_context():
+    db.create_all()
+
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
