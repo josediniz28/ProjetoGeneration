@@ -10,6 +10,7 @@ COPY . .
 # Instale as dependências
 RUN pip install --no-cache-dir -r requirements.txt
 
+ENV FLASK_APP ProjetoFinal.py
 # Exponha a porta que sua aplicação usará
 EXPOSE   5000
 
