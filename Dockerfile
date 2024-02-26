@@ -5,7 +5,7 @@ FROM python:3.12.0-slim
 WORKDIR /app
 
 # Copie os arquivos do projeto para o diretório de trabalho
-COPY . /app
+COPY . .
 
 # Instale as dependências
 RUN pip install --no-cache-dir -r requirements.txt
@@ -14,5 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE   5000
 
 # Comando para iniciar a aplicação
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
 
