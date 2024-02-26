@@ -1,0 +1,18 @@
+swagger: '2.0'
+info:
+  title: API de Postagens
+  version: '1.0'
+paths:
+  /postagens/{postagem_id}:
+    delete:
+      summary: Remove uma postagem existente
+      parameters:
+        - name: postagem_id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Postagem removida com sucesso
+        404:
+          description: Postagem não encontrada

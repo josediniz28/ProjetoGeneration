@@ -1,0 +1,31 @@
+swagger: '2.0'
+info:
+  title: 'API de Temas'
+  description: 'Endpoints para operações relacionadas a temas'
+  version: '1.0'
+
+paths:
+  /temas:
+    get:
+      summary: 'Obter todos os temas'
+      responses:
+        200:
+          description: 'Lista de temas'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Tema'
+
+definitions:
+  Tema:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        description: 'ID do tema'
+      descricao:
+        type: 'string'
+        description: 'Descrição do tema'
+    example:
+      id: 1
+      descricao: 'Tema 1'

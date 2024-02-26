@@ -1,0 +1,390 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de Usuários, Postagens e Temas",
+    "version": "1.0"
+  },
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Obter todos os usuários",
+        "responses": {
+          "200": {
+            "description": "Lista de usuários",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "ID do usuário"
+                  },
+                  "nome": {
+                    "type": "string",
+                    "description": "Nome do usuário"
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "E-mail do usuário"
+                  }
+                },
+                "example": {
+                  "id": 1,
+                  "nome": "João",
+                  "email": "joao@example.com"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria um novo usuário",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Erro na criação do usuário"
+          },
+          "409": {
+            "description": "E-mail já cadastrado"
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "put": {
+        "summary": "Atualiza um usuário existente",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário atualizado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Erro na atualização do usuário"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove um usuário existente",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário removido com sucesso"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          }
+        }
+      }
+    },
+    "/postagens": {
+      "get": {
+        "summary": "Obter todas as postagens",
+        "responses": {
+          "200": {
+            "description": "Lista de postagens",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "ID da postagem"
+                  },
+                  "titulo": {
+                    "type": "string",
+                    "description": "Título da postagem"
+                  },
+                  "texto": {
+                    "type": "string",
+                    "description": "Texto da postagem"
+                  }
+                },
+                "example": {
+                  "id": 1,
+                  "titulo": "Minha Primeira Postagem",
+                  "texto": "Conteúdo da minha primeira postagem..."
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria uma nova postagem",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Postagem"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Postagem criada com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Postagem"
+            }
+          },
+          "400": {
+            "description": "Erro na criação da postagem"
+          }
+        }
+      }
+    },
+    "/postagens/{postagem_id}": {
+      "put": {
+        "summary": "Atualiza uma postagem existente",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "postagem_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Postagem"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Postagem atualizada com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Postagem"
+            }
+          },
+          "400": {
+            "description": "Erro na atualização da postagem"
+          },
+          "404": {
+            "description": "Postagem não encontrada"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove uma postagem existente",
+        "parameters": [
+          {
+            "name": "postagem_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Postagem removida com sucesso"
+          },
+          "404": {
+            "description": "Postagem não encontrada"
+          }
+        }
+      }
+    },
+    "/temas": {
+      "get": {
+        "summary": "Obter todos os temas",
+        "responses": {
+          "200": {
+            "description": "Lista de temas",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tema"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria um novo tema",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Tema"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Tema criado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Tema"
+            }
+          },
+          "400": {
+            "description": "Erro na criação do tema"
+          }
+        }
+      }
+    },
+    "/temas/{tema_id}": {
+      "put": {
+        "summary": "Atualiza um tema existente",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tema_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Tema"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tema atualizado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Tema"
+            }
+          },
+          "400": {
+            "description": "Erro na atualização do tema"
+          },
+          "404": {
+            "description": "Tema não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove um tema existente",
+        "parameters": [
+          {
+            "name": "tema_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tema removido com sucesso"
+          },
+          "404": {
+            "description": "Tema não encontrado"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "minLength": 3
+        },
+        "email": {
+          "type": "string",
+          "minLength": 5
+        },
+        "foto": {
+          "type": "string"
+        }
+      }
+    },
+    "Postagem": {
+      "type": "object",
+      "properties": {
+        "titulo": {
+          "type": "string",
+          "minLength": 5
+        },
+        "texto": {
+          "type": "string",
+          "minLength": 10
+        },
+        "usuario_id": {
+          "type": "integer"
+        },
+        "tema_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "Tema": {
+      "type": "object",
+      "properties": {
+        "descricao": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    }
+  }
+}

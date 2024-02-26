@@ -1,0 +1,30 @@
+swagger: '2.0'
+info:
+  title: 'API de Postagens'
+  description: 'Endpoints para operações relacionadas a postagens'
+  version: '1.0'
+paths:
+  /postagens:
+    get:
+      summary: 'Obter todas as postagens'
+      responses:
+        200:
+          description: 'Lista de postagens'
+          schema:
+            type: 'array'
+            items:
+              type: 'object'
+              properties:
+                id:
+                  type: 'integer'
+                  description: 'ID da postagem'
+                titulo:
+                  type: 'string'
+                  description: 'Título da postagem'
+                texto:
+                  type: 'string'
+                  description: 'Texto da postagem'
+              example:
+                id: 1
+                titulo: 'Minha Primeira Postagem'
+                texto: 'Conteúdo da minha primeira postagem...'

@@ -1,0 +1,30 @@
+swagger: '2.0'
+info:
+  title: 'API de Usuários'
+  description: 'Endpoints para operações relacionadas a usuários'
+  version: '1.0'
+paths:
+  /users:
+    get:
+      summary: 'Obter todos os usuários'
+      responses:
+        200:
+          description: 'Lista de usuários'
+          schema:
+            type: 'array'
+            items:
+              type: 'object'
+              properties:
+                id:
+                  type: 'integer'
+                  description: 'ID do usuário'
+                nome:
+                  type: 'string'
+                  description: 'Nome do usuário'
+                email:
+                  type: 'string'
+                  description: 'E-mail do usuário'
+              example:
+                id: 1
+                nome: 'João'
+                email: 'joao@example.com'

@@ -1,0 +1,42 @@
+swagger: '2.0'
+info:
+  title: API de Postagens
+  version: '1.0'
+paths:
+  /postagens/{postagem_id}:
+    put:
+      summary: Atualiza uma postagem existente
+      consumes:
+        - application/json
+      parameters:
+        - name: postagem_id
+          in: path
+          type: integer
+          required: true
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/Postagem'
+      responses:
+        200:
+          description: Postagem atualizada com sucesso
+          schema:
+            $ref: '#/definitions/Postagem'
+        400:
+          description: Erro na atualização da postagem
+        404:
+          description: Postagem não encontrada
+definitions:
+  Postagem:
+    type: object
+    properties:
+      titulo:
+        type: string
+        minLength:  5
+      texto:
+        type: string
+        minLength:  10
+      usuario_id:
+        type: integer
+      tema_id:
+        type: integer

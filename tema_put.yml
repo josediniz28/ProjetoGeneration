@@ -1,0 +1,35 @@
+swagger: '2.0'
+info:
+  title: API de Temas
+  version: '1.0'
+paths:
+  /temas/{tema_id}:
+    put:
+      summary: Atualiza um tema existente
+      consumes:
+        - application/json
+      parameters:
+        - name: tema_id
+          in: path
+          type: integer
+          required: true
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/Tema'
+      responses:
+        200:
+          description: Tema atualizado com sucesso
+          schema:
+            $ref: '#/definitions/Tema'
+        400:
+          description: Erro na atualização do tema
+        404:
+          description: Tema não encontrado
+definitions:
+  Tema:
+    type: object
+    properties:
+      descricao:
+        type: string
+        minLength:  3

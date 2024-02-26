@@ -1,0 +1,18 @@
+swagger: '2.0'
+info:
+  title: API de Usuários
+  version: '1.0'
+paths:
+  /users/{user_id}:
+    delete:
+      summary: Remove um usuário existente
+      parameters:
+        - name: user_id
+          in: path
+          type: integer
+          required: true
+      responses:
+        200:
+          description: Usuário removido com sucesso
+        404:
+          description: Usuário não encontrado
